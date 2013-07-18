@@ -1,0 +1,8 @@
+README
+
+The 'skusa' folder goes in the webservers root directory.
+The folder contains all the necessary files to sync the scanners and store the database.
+
+The NickWeilEvents is the project for the iOS application. Open the .xcodeproj in Xcode and you're good to go.
+
+msroed@gmail.com
