@@ -17,10 +17,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EA7-qv-lJz">
-                                <rect key="frame" x="110" y="304" width="86" height="44"/>
+                                <rect key="frame" x="80" y="304" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Let's go!">
+                                <state key="normal" title="Add or edit driver">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -791,7 +791,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </scrollView>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Scan" image="rss.png" id="c9k-NP-z6t"/>
+                    <tabBarItem key="tabBarItem" title="Verify" image="rss.png" id="c9k-NP-z6t"/>
                     <navigationItem key="navigationItem" title="Driver Details" id="8tP-zA-1FY"/>
                     <connections>
                         <outlet property="ambField" destination="weA-xX-7d5" id="2Tp-id-hh1"/>
