@@ -294,7 +294,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from tableData
         [[tableData objectAtIndex:indexPath.section] removeObjectAtIndex:indexPath.row];
-        [changesMade setObject:[NSNumber numberWithBool:YES] atIndexedSubscript:indexPath.row];
+        [changesMade setObject:[NSNumber numberWithBool:YES] atIndexedSubscript:indexPath.section];
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
