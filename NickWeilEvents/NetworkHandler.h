@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSString *ipaddress;
 @property (strong, nonatomic) NSDateFormatter *formatter;
 
-
+//test
 + (NetworkHandler *)sharedManager;
 - (BOOL) syncAllEvents;
 - (BOOL) syncAllDriversWithEventID:(int) eventID;
