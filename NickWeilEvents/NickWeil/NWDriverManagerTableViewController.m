@@ -205,7 +205,7 @@
     [self.filteredDriversArray removeAllObjects];
     [self.filteredDriversIndex removeAllObjects];
     // Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[c] %@) OR (SELF.kart contains[c] %@) or (SELF.driverclass contains[c] %@",searchText, searchText, searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[c] %@) OR (SELF.kart contains[c] %@) OR (SELF.driverclass contains[c] %@)",searchText, searchText, searchText];
     filteredDriversArray = [NSMutableArray arrayWithArray:[driverArray filteredArrayUsingPredicate:predicate]];
     for (Driver *driver in filteredDriversArray) {
         if (![filteredDriversIndex containsObject:driver.driverclass])
