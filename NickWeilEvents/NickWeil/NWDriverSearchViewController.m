@@ -114,6 +114,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/search_driver.php?id=%@", [[NetworkHandler sharedManager] ipaddress], barcode]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [self resetDriver];
         [self.driver setName:[JSON objectForKey:@"name"]];
         [self.driver setKart:[JSON objectForKey:@"kart"]];
         [self.driver setDriverclass:[JSON objectForKey:@"class"]];
@@ -134,7 +135,6 @@
         if (![string isEqualToString:@""])
             [self.driver setEngines:[[string componentsSeparatedByString:@","] mutableCopy]];
         [MBHUDView dismissCurrentHUD];
-        [self resetDriver];
         [self initializeDriver];
         [self.scannedBarcodes addObject:barcode];
         [self.tableView reloadData];
