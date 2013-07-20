@@ -100,6 +100,7 @@
 
 - (void) driverDidChange : (NSNotification *) note {
     [self initializeArrays];
+    [self.searchDisplayController.searchResultsTableView reloadData];
     [self.tableView reloadData];
 }
 

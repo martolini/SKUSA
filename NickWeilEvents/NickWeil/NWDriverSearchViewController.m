@@ -189,6 +189,7 @@
     cell.textLabel.text = cellText;
     if ([scannedBarcodes containsObject:cellText])
         [cell.textLabel setTextColor:[UIColor greenColor]];
+    else [cell.textLabel setTextColor:[UIColor blackColor]];
     return cell;
 }
 
