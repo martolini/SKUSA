@@ -39,6 +39,7 @@
     [linea barcodeSetScanMode:BARCODE_TYPE_DEFAULT error:nil];
     [linea barcodeStartScan:nil];
     [self initializeDriver];
+
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -111,10 +112,17 @@
 }
 
 -(void)barcodeData:(NSString *)barcode type:(int)type {
+    if ([driver hasBarcode:barcode]) {
+        [self.scannedBarcodes addObject:barcode];
+        [self.tableView reloadData];
+        return;
+    }
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/search_driver.php?id=%@", [[NetworkHandler sharedManager] ipaddress], barcode]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [self resetDriver];
+        if (driver.driverid != [[JSON objectForKey:@"id"] intValue]) {
+            [self resetDriver];
+        }
         [self.driver setName:[JSON objectForKey:@"name"]];
         [self.driver setKart:[JSON objectForKey:@"kart"]];
         [self.driver setDriverclass:[JSON objectForKey:@"class"]];
@@ -144,11 +152,6 @@
     }];
     [MBHUDView hudWithBody:@"Searching" type:MBAlertViewHUDTypeActivityIndicator hidesAfter:10 show:YES];
     [op start];
-//    Driver *ldriver = [[DBHandler sharedManager] getDriverFromBarcode:barcode];
-//    if (!ldriver) {
-//        [MBHUDView hudWithBody:@"No driver found" type:MBAlertViewHUDTypeDefault hidesAfter:1.5 show:YES];
-//        return;
-//    }
     
 }
 
