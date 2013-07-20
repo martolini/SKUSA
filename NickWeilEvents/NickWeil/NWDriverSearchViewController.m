@@ -134,8 +134,9 @@
         if (![string isEqualToString:@""])
             [self.driver setEngines:[[string componentsSeparatedByString:@","] mutableCopy]];
         [MBHUDView dismissCurrentHUD];
-        [self.scannedBarcodes addObject:barcode];
+        [self resetDriver];
         [self initializeDriver];
+        [self.scannedBarcodes addObject:barcode];
         [self.tableView reloadData];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         [MBHUDView dismissCurrentHUD];
