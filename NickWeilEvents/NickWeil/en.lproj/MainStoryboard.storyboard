@@ -717,7 +717,7 @@
                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="AMB #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sps-BH-TbA">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sps-BH-TbA">
                                     <rect key="frame" x="25" y="88" width="53" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -852,91 +852,6 @@
         <image name="home.png" width="30" height="30"/>
         <image name="rss.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="DriverManagerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DriverManagerCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="engineImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="frameImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="kartLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tireImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="EventManagerCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventManagerCell.h"/>
-        </class>
-        <class className="NWDriverDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWDriverDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didPressClassField:"/>
-                <relationship kind="action" name="didPressSegmentField:" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="ambField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="classField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="kartField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scroller" candidateClass="TPKeyboardAvoidingScrollView"/>
-                <relationship kind="outlet" name="segmentScan" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NWDriverManagerTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWDriverManagerTableViewController.h"/>
-        </class>
-        <class className="NWDriverSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWDriverSearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="ambField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="classField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="kartField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NWEventDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWEventDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didPressDateButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="didPressSeeDrivers:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="classesField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="endDateButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="locationField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organizationField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="startDateButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="NWEventManagerTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWEventManagerTableViewController.h"/>
-        </class>
-        <class className="NWEventSettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWEventSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didPressSave:"/>
-                <relationship kind="outlet" name="chassisBottomRange" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="chassisTopRange" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="engineBottomRange" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="engineTopRange" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tireBottomRange" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tireTopRange" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NWSettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NWSettingsViewController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didPressLetsGo:"/>
-            </relationships>
-        </class>
-        <class className="TPKeyboardAvoidingScrollView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingScrollView.h"/>
-        </class>
-        <class className="TPKeyboardAvoidingTableView" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingTableView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

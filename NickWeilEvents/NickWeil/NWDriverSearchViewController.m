@@ -9,6 +9,8 @@
 #import "NWDriverSearchViewController.h"
 #import "MBHUDView.h"
 #import "DBHandler.h"
+#import "NetworkHandler.h"
+#import "AFJSONRequestOperation.h"
 
 @interface NWDriverSearchViewController ()
 
@@ -109,16 +111,36 @@
 }
 
 -(void)barcodeData:(NSString *)barcode type:(int)type {
-    Driver *ldriver = [[DBHandler sharedManager] getDriverFromBarcode:barcode];
-    if (!ldriver) {
-        [MBHUDView hudWithBody:@"No driver found" type:MBAlertViewHUDTypeDefault hidesAfter:1.5 show:YES];
-        return;
-    }
-    [self.scannedBarcodes addObject:barcode];
-    [self setDriver:ldriver];
-    [self initializeDriver];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/search_driver.php?id=%@", [[NetworkHandler sharedManager] ipaddress], barcode]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [self.driver setName:[JSON objectForKey:@"name"]];
+        [self.driver setKart:[JSON objectForKey:@"kart"]];
+        [self.driver setDriverclass:[JSON objectForKey:@"class"]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *ddate = [formatter dateFromString:[JSON objectForKey:@"date"]];
+        [formatter setDateFormat:@"EEEE"];
+        [self.driver setAMB:[formatter stringFromDate:ddate]];
+        [self.driver setTires:[JSON objectForKey:@"tires"]];
+        [self.driver setEngines:[JSON objectForKey:@"engines"]];
+        [self.driver setChassis:[JSON objectForKey:@"chassis"]];
+        [MBHUDView dismissCurrentHUD];
+        [self.scannedBarcodes addObject:barcode];
+        [self initializeDriver];
+        [self.tableView reloadData];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        [MBHUDView dismissCurrentHUD];
+        [MBHUDView hudWithBody:@"No driver found" type:MBAlertViewHUDTypeExclamationMark hidesAfter:1.5 show:YES];
+    }];
+    [MBHUDView hudWithBody:@"Searching" type:MBAlertViewHUDTypeActivityIndicator hidesAfter:10 show:YES];
+    [op start];
+//    Driver *ldriver = [[DBHandler sharedManager] getDriverFromBarcode:barcode];
+//    if (!ldriver) {
+//        [MBHUDView hudWithBody:@"No driver found" type:MBAlertViewHUDTypeDefault hidesAfter:1.5 show:YES];
+//        return;
+//    }
     
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView datasource
