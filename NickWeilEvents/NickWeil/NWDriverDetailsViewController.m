@@ -127,10 +127,10 @@
     
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void) viewWillAppear:(BOOL)animated {
     [self initializeDriver];
     [self initializeTableView];
+    [super viewWillAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
