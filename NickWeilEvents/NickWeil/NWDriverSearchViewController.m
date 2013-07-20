@@ -118,13 +118,21 @@
         [self.driver setKart:[JSON objectForKey:@"kart"]];
         [self.driver setDriverclass:[JSON objectForKey:@"class"]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate *ddate = [formatter dateFromString:[JSON objectForKey:@"date"]];
-        [formatter setDateFormat:@"EEEE"];
-        [self.driver setAMB:[formatter stringFromDate:ddate]];
-        [self.driver setTires:[JSON objectForKey:@"tires"]];
-        [self.driver setEngines:[JSON objectForKey:@"engines"]];
-        [self.driver setChassis:[JSON objectForKey:@"chassis"]];
+        if (![[JSON objectForKey:@"date"] isEqualToString:@""]) {
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate *ddate = [formatter dateFromString:[JSON objectForKey:@"date"]];
+            [formatter setDateFormat:@"EEEE"];
+            [self.driver setAMB:[formatter stringFromDate:ddate]];
+        }
+        NSString *string = [JSON objectForKey:@"tires"];
+        if (![string isEqualToString:@""])
+            [self.driver setTires:[[string componentsSeparatedByString:@","] mutableCopy]];
+        string = [JSON objectForKey:@"chassis"];
+        if (![string isEqualToString:@""])
+            [self.driver setChassis:[[string componentsSeparatedByString:@","] mutableCopy]];
+        string = [JSON objectForKey:@"engines"];
+        if (![string isEqualToString:@""])
+            [self.driver setEngines:[[string componentsSeparatedByString:@","] mutableCopy]];
         [MBHUDView dismissCurrentHUD];
         [self.scannedBarcodes addObject:barcode];
         [self initializeDriver];
