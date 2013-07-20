@@ -11,8 +11,13 @@ $driver_tires = $_GET['tire'];
 $driver_engines = $_GET['engine'];
 $driver_chassis = $_GET['chassis'];
 
+$event_result = $mysqli->query("SELECT event_id FROM driver WHERE id={$driver_id}");
+$event_id = -1;
+while (list($evid) = $event_result->fetch_row())
+	$event_id = $evid;
+
 // handle class
-$class_result = $mysqli->query("SELECT id FROM event_class WHERE class_name like '$driver_class'");
+$class_result = $mysqli->query("SELECT id FROM event_class WHERE class_name like '$driver_class' AND event_id={$event_id}");
 $class_id = 0;
 while (list($cid) = $class_result->fetch_row()) {
     $class_id = $cid;
@@ -27,7 +32,8 @@ if ($driver_tires != -1) {
 	$mysqli->query("DELETE FROM driver_tire WHERE driver_id=$driver_id");
 	$tire_array = explode(",", $driver_tires);
 	foreach ($tire_array as $tire_id) {
-	    $mysqli->query("INSERT INTO driver_tire (driver_id, tire_id) VALUES ($driver_id, '$tire_id')");
+		if ($tire_id != '')
+	    	$mysqli->query("INSERT INTO driver_tire (driver_id, tire_id) VALUES ($driver_id, '$tire_id')");
 	}
 }
 
@@ -36,7 +42,8 @@ if ($driver_engines != -1) {
 $mysqli->query("DELETE FROM driver_engine WHERE driver_id=$driver_id");
 	$engine_array = explode(",", $driver_engines);
 	foreach ($engine_array as $engine_id) {
-	    $mysqli->query("INSERT INTO driver_engine (driver_id, engine_id) VALUES ($driver_id, '$engine_id')");
+		if ($engine_id != '')
+	    	$mysqli->query("INSERT INTO driver_engine (driver_id, engine_id) VALUES ($driver_id, '$engine_id')");
 	}
 }
 
@@ -45,7 +52,8 @@ if ($driver_chassis != -1) {
 	$mysqli->query("DELETE FROM driver_chassis WHERE driver_id=$driver_id");
 	$chassis_array = explode(",", $driver_chassis);
 	foreach ($chassis_array as $chassis_id) {
-	    $mysqli->query("INSERT INTO driver_chassis (driver_id, chassis_id) VALUES ($driver_id, '$chassis_id')");
+		if ($chassis_id != '')
+	    	$mysqli->query("INSERT INTO driver_chassis (driver_id, chassis_id) VALUES ($driver_id, '$chassis_id')");
 	}
 }
 // 

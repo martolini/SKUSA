@@ -17,7 +17,7 @@
 @implementation NWDriverSearchViewController
 @synthesize linea;
 @synthesize driver;
-@synthesize tableData;
+@synthesize tableData, scannedBarcodes;
 
 #pragma mark - Lifecycle
 
@@ -58,6 +58,7 @@
     [self.driver.tires removeAllObjects];
     [self.driver.chassis removeAllObjects];
     [self.driver.engines removeAllObjects];
+    [self.scannedBarcodes removeAllObjects];
 }
 
 - (void) initializeDriver {
@@ -71,6 +72,8 @@
         self.driver.chassis = [NSMutableArray array];
     if (driver.engines == nil)
         self.driver.engines = [NSMutableArray array];
+    if (scannedBarcodes == nil)
+        self.scannedBarcodes = [NSMutableArray array];
     [tableData setObject:driver.tires atIndexedSubscript:NWTableOrderTires];
     [tableData setObject:driver.chassis atIndexedSubscript:NWTableOrderChassis];
     [tableData setObject:driver.engines atIndexedSubscript:NWTableOrderEngines];
@@ -111,6 +114,7 @@
         [MBHUDView hudWithBody:@"No driver found" type:MBAlertViewHUDTypeDefault hidesAfter:1.5 show:YES];
         return;
     }
+    [self.scannedBarcodes addObject:barcode];
     [self setDriver:ldriver];
     [self initializeDriver];
     
@@ -153,6 +157,8 @@
         cellText = @"None";
     else cellText = [[tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = cellText;
+    if ([scannedBarcodes containsObject:cellText])
+        [cell.textLabel setTextColor:[UIColor greenColor]];
     return cell;
 }
 
