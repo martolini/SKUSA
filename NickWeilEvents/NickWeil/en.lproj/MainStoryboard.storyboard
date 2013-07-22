@@ -505,7 +505,7 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" barStyle="blackOpaque" id="f4d-1s-BZE">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="hWj-IS-ZIc" id="gQO-ty-JKg"/>
                             </connections>
