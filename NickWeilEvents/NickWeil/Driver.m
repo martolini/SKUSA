@@ -14,14 +14,6 @@
 @synthesize AMB, driverid, eventid;
 @synthesize tires, chassis, engines;
 
-- (BOOL) hasBarcode:(NSString *)barcode {
-    for (NSString *string in [[tires arrayByAddingObjectsFromArray:engines] arrayByAddingObjectsFromArray:chassis]) {
-        if ([barcode isEqualToString:string])
-            return YES;
-    }
-    return NO;
-}
-
 + (BOOL) validateChassis:(int)lchassis {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults objectForKey:kUserDefaultsRanges])

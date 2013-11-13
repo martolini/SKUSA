@@ -55,6 +55,7 @@
 		0B9D2C46178F63170079F737 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9D2C45178F63170079F737 /* rss.png */; };
 		0B9D2C48178F63620079F737 /* spanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9D2C47178F63620079F737 /* spanner.png */; };
 		0B9D2C4A178F63A90079F737 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9D2C49178F63A90079F737 /* gear.png */; };
+		0BA8CFC91832D12600A88323 /* libdtdev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA8CFC81832D12600A88323 /* libdtdev.a */; };
 		0BA9ABD31785A894000C9E46 /* 1Tire.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9ABCB1785A894000C9E46 /* 1Tire.png */; };
 		0BA9ABD41785A894000C9E46 /* 2Tire.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9ABCC1785A894000C9E46 /* 2Tire.png */; };
 		0BA9ABD51785A894000C9E46 /* 3Tire.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9ABCD1785A894000C9E46 /* 3Tire.png */; };
@@ -79,7 +80,6 @@
 		0BD42AB51712E93100A421EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD42AB41712E93100A421EF /* SystemConfiguration.framework */; };
 		0BD42AB71712E93500A421EF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD42AB61712E93500A421EF /* MobileCoreServices.framework */; };
 		0BD42ABC1712ED8700A421EF /* NWSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42ABB1712ED8700A421EF /* NWSettingsViewController.m */; };
-		0BDDEF1316F900ED0090A9A3 /* libdtdev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDDEF1216F900ED0090A9A3 /* libdtdev.a */; };
 		0BDDEF1516F901330090A9A3 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDDEF1416F901330090A9A3 /* libsqlite3.0.dylib */; };
 		0BDDEF1716F903AF0090A9A3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDDEF1616F903AF0090A9A3 /* ExternalAccessory.framework */; };
 		0BF8914116C5958D00FB3F46 /* DriverManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8914016C5958D00FB3F46 /* DriverManagerCell.m */; };
@@ -181,6 +181,8 @@
 		0B9D2C45178F63170079F737 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
 		0B9D2C47178F63620079F737 /* spanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spanner.png; sourceTree = "<group>"; };
 		0B9D2C49178F63A90079F737 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		0BA8CFC71832D12600A88323 /* DTDevices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTDevices.h; sourceTree = "<group>"; };
+		0BA8CFC81832D12600A88323 /* libdtdev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdtdev.a; sourceTree = "<group>"; };
 		0BA9ABCB1785A894000C9E46 /* 1Tire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1Tire.png; path = ../1Tire.png; sourceTree = "<group>"; };
 		0BA9ABCC1785A894000C9E46 /* 2Tire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2Tire.png; path = ../2Tire.png; sourceTree = "<group>"; };
 		0BA9ABCD1785A894000C9E46 /* 3Tire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3Tire.png; path = ../3Tire.png; sourceTree = "<group>"; };
@@ -218,10 +220,8 @@
 		0BD42AB61712E93500A421EF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0BD42ABA1712ED8700A421EF /* NWSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWSettingsViewController.h; sourceTree = "<group>"; };
 		0BD42ABB1712ED8700A421EF /* NWSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWSettingsViewController.m; sourceTree = "<group>"; };
-		0BDDEF1216F900ED0090A9A3 /* libdtdev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdtdev.a; sourceTree = "<group>"; };
 		0BDDEF1416F901330090A9A3 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		0BDDEF1616F903AF0090A9A3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
-		0BDDEF1816F904D70090A9A3 /* LineaSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineaSDK.h; sourceTree = "<group>"; };
 		0BF8913F16C5958D00FB3F46 /* DriverManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriverManagerCell.h; path = NickWeil/DriverManagerCell.h; sourceTree = "<group>"; };
 		0BF8914016C5958D00FB3F46 /* DriverManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriverManagerCell.m; path = NickWeil/DriverManagerCell.m; sourceTree = "<group>"; };
 		A466CAC11703444E00B458A9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -239,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BBDA67B17976EAE00CE1CD8 /* AudioToolbox.framework in Frameworks */,
+				0BA8CFC91832D12600A88323 /* libdtdev.a in Frameworks */,
 				0BD42AB71712E93500A421EF /* MobileCoreServices.framework in Frameworks */,
 				0BD42AB51712E93100A421EF /* SystemConfiguration.framework in Frameworks */,
 				0B07E48016FB132900DB3ABD /* QuartzCore.framework in Frameworks */,
@@ -247,7 +248,6 @@
 				0B5BA48516B6B74200047CFB /* UIKit.framework in Frameworks */,
 				0B5BA48716B6B74200047CFB /* Foundation.framework in Frameworks */,
 				0B5BA48916B6B74200047CFB /* CoreGraphics.framework in Frameworks */,
-				0BDDEF1316F900ED0090A9A3 /* libdtdev.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,13 +408,13 @@
 		0B5BA48316B6B74200047CFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BA8CFC71832D12600A88323 /* DTDevices.h */,
+				0BA8CFC81832D12600A88323 /* libdtdev.a */,
 				0BBDA67A17976EAE00CE1CD8 /* AudioToolbox.framework */,
 				0BD42AB61712E93500A421EF /* MobileCoreServices.framework */,
 				0BD42AB41712E93100A421EF /* SystemConfiguration.framework */,
-				0BDDEF1816F904D70090A9A3 /* LineaSDK.h */,
 				0B07E47F16FB132900DB3ABD /* QuartzCore.framework */,
 				0BDDEF1616F903AF0090A9A3 /* ExternalAccessory.framework */,
-				0BDDEF1216F900ED0090A9A3 /* libdtdev.a */,
 				0BDDEF1416F901330090A9A3 /* libsqlite3.0.dylib */,
 				0B5BA48416B6B74200047CFB /* UIKit.framework */,
 				0B5BA48616B6B74200047CFB /* Foundation.framework */,
@@ -769,7 +769,8 @@
 				INFOPLIST_FILE = "NickWeil/NickWeil-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/martinroed/Dropbox/NickWeil/NickWeilBeta,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -784,7 +785,8 @@
 				INFOPLIST_FILE = "NickWeil/NickWeil-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/martinroed/Dropbox/NickWeil/NickWeilBeta,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

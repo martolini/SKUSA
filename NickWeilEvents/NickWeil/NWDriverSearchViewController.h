@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Driver.h"
-#import "LineaSDK.h"
+#import "DTDevices.h"
 
 typedef enum {
     NWTableOrderTires = 0,
@@ -16,16 +16,16 @@ typedef enum {
     NWTableOrderEngines = 2
 } NWDriverDetailsTableOrder;
 
-@interface NWDriverSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, LineaDelegate, UITextFieldDelegate>
+@interface NWDriverSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DTDeviceDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *kartField;
 @property (weak, nonatomic) IBOutlet UITextField *ambField;
 @property (weak, nonatomic) IBOutlet UITextField *classField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *tableData, *scannedBarcodes;
+@property (strong, nonatomic) NSMutableArray *tableData;
 @property (strong, nonatomic) Driver *driver;
-@property (weak, nonatomic) Linea *linea;
+@property (weak, nonatomic) DTDevices *linea;
 
 -(void)barcodeData:(NSString *)barcode type:(int)type;
 -(void)connectionState:(int)state;

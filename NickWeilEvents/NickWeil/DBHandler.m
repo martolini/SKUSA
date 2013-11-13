@@ -311,7 +311,7 @@ NSString * const databaseName = @"maindb.sqlite";
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         return;
-    [db executeUpdate:@"DELETE FROM driver", [NSNumber numberWithInt:event.eventid]];
+    [db executeUpdate:@"DELETE FROM driver WHERE eventid=?", [NSNumber numberWithInt:event.eventid]];
     for (id key in [JSON allKeys]) {
         NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (name, kart, AMB, class, eventid) VALUES ('%@', '%@', '%@', '%@', %i)",
                            [NSString stringWithFormat:@"%@ %@", [[JSON objectForKey:key] objectForKey:@"firstname"], [[JSON objectForKey:key] objectForKey:@"lastname"]],

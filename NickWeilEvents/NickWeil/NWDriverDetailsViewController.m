@@ -123,14 +123,14 @@
     alert = [[UIAlertView alloc] init];
     alert.delegate = self;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.linea = [Linea sharedDevice];
+    self.linea = [DTDevices sharedDevice];
     
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self initializeDriver];
     [self initializeTableView];
-    [super viewWillAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -155,7 +155,7 @@
         }
             break;
         case CONN_CONNECTING: {
-            MBAlertView *tempalert = [MBAlertView alertWithBody:@"Connecting to scanner" cancelTitle:@"Cancel" cancelBlock:^{
+            MBAlertView *tempalert = [MBAlertView alertWithBody:@"Please press scanner side button" cancelTitle:@"Cancel" cancelBlock:^{
                 [self setEditing:NO animated:NO];
             }];
             [tempalert addToDisplayQueue];

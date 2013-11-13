@@ -87,7 +87,7 @@
                     [userDefaults setObject:JSON forKey:@"driverJSON"];
                 }
                 else {
-                    [[DBHandler sharedManager] storeDriversFromDatabaseWithJSON:JSON andEventID:eventID];
+                    //[[DBHandler sharedManager] storeDriversFromDatabaseWithJSON:JSON andEventID:eventID];
                 }
             }
             else {

@@ -25,7 +25,6 @@ typedef struct componentRange {
 + (BOOL) validateTire:(int)ltire;
 + (BOOL) validateEngine:(int)lengine;
 + (BOOL) validateChassis:(int)lchassis;
-- (BOOL) hasBarcode:(NSString *)barcode;
 
 + (NWComponentRange) getRangeFor:(rangeArrayIndex) idx;
 

@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Driver.h"
-#import "LineaSDK.h"
+#import "DTDevices.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
 typedef enum {
@@ -18,7 +18,7 @@ typedef enum {
     NWTableOrderEngines = 2
 } NWDriverDetailsTableOrder;
 
-@interface NWDriverDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, LineaDelegate>
+@interface NWDriverDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, DTDeviceDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *kartField;
@@ -30,7 +30,7 @@ typedef enum {
 @property (strong, nonatomic) Driver *driver;
 @property (strong, nonatomic) UIAlertView *alert;
 @property (nonatomic) BOOL isNewDriver;
-@property (weak, nonatomic) Linea *linea;
+@property (weak, nonatomic) DTDevices *linea;
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scroller;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentScan;
 
