@@ -48,6 +48,11 @@ while (list($id, $name, $kart, $note, $class_id) = $result->fetch_row()) {
     if (!$class_id) {
         $class_id = 0;
     }
+
+    if (!$note) {
+        $note = "";
+    }
+    
     $class_result = $mysqli->query("SELECT class_name FROM event_class WHERE id = $class_id");
     $class_name = "";
     while (list($q_class_name) = $class_result->fetch_row()) {
