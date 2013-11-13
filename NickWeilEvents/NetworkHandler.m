@@ -180,11 +180,12 @@
     NSString *chassis = [[changesMade objectAtIndex:NWTableOrderChassis] boolValue] ? [driver.chassis componentsJoinedByString:@","] : @"-1";
     NSString *engines = [[changesMade objectAtIndex:NWTableOrderEngines] boolValue] ? [driver.engines componentsJoinedByString:@","] : @"-1";
     
-    NSString *stringUrl = [NSString stringWithFormat:@"http://%@/sync_driver.php?id=%i&name=%@&kart=%@&class=%@&tire=%@&chassis=%@&engine=%@",
+    NSString *stringUrl = [NSString stringWithFormat:@"http://%@/sync_driver.php?id=%i&name=%@&kart=%@&note=%@&class=%@&tire=%@&chassis=%@&engine=%@",
                            ipaddress,
                            driver.driverid,
                            driver.name,
                            driver.kart,
+                           driver.note,
                            driver.driverclass,
                            tires,
                            chassis,
@@ -210,7 +211,7 @@
 }
 
 - (BOOL) createNewDriverFromDriver:(Driver *)driver{
-    NSString *strurl = [NSString stringWithFormat:@"http://%@/create_driver.php?name=%@&kart=%@&event_id=%i&class=%@", ipaddress, driver.name, driver.kart, driver.eventid, driver.driverclass];
+    NSString *strurl = [NSString stringWithFormat:@"http://%@/create_driver.php?name=%@&kart=%@&note=%@&event_id=%i&class=%@", ipaddress, driver.name, driver.kart, driver.note, driver.eventid, driver.driverclass];
     NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                                     NULL,
                                                                                                     (CFStringRef)strurl,

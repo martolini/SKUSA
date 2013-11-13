@@ -6,6 +6,7 @@ $mysqli = new mysqli($host, $user, $passw, $database);
 $driver_id = $_GET['id'];
 $driver_name = $_GET['name'];
 $driver_kart = $_GET['kart'];
+$driver_note = $_GET['note'];
 $driver_class = $_GET['class'];
 $driver_tires = $_GET['tire'];
 $driver_engines = $_GET['engine'];
@@ -24,7 +25,7 @@ while (list($cid) = $class_result->fetch_row()) {
 }
 
 // handle name, kart
-$mysqli->query("UPDATE driver SET name='$driver_name', kart='$driver_kart', class_id=$class_id WHERE id = $driver_id");
+$mysqli->query("UPDATE driver SET name='$driver_name', kart='$driver_kart', note='$driver_note', class_id=$class_id WHERE id = $driver_id");
 
 // handle tires.
 

@@ -26,6 +26,7 @@
     self.classField.text = driver.driverclass;
     self.ambField.text = driver.AMB;
     self.kartField.text = driver.kart;
+    self.notesField.text = driver.note;
     if (driver.tires == nil)
         self.driver.tires = [NSMutableArray array];
     if (driver.chassis == nil)
@@ -81,6 +82,7 @@
     [self.classField setUserInteractionEnabled:enabled];
     [self.ambField setUserInteractionEnabled:enabled];
     [self.kartField setUserInteractionEnabled:enabled];
+    [self.notesField setUserInteractionEnabled:enabled];
     [self reloadTableAndScroller:NO:nil];
 }
 
@@ -89,6 +91,7 @@
     self.driver.AMB = self.ambField.text ? self.ambField.text : @"";
     self.driver.kart = self.kartField.text ? self.kartField.text : @"";
     self.driver.driverclass = self.classField.text ? self.classField.text : @"";
+    self.driver.note = self.notesField.text ? self.notesField.text : @"";
     self.driver.tires = [tableData objectAtIndex:NWTableOrderTires];
     self.driver.chassis = [tableData objectAtIndex:NWTableOrderChassis];
     self.driver.engines = [tableData objectAtIndex:NWTableOrderEngines];

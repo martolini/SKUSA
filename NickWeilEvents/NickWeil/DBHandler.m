@@ -173,6 +173,7 @@ NSString * const databaseName = @"maindb.sqlite";
         [driver setName:[results stringForColumn:@"name"]];
         [driver setKart:[results stringForColumn:@"kart"]];
         [driver setAMB:[results stringForColumn:@"AMB"]];
+        [driver setNote:[results stringForColumn:@"note"]];
         
         NSString *tiresString = [results stringForColumn:@"tires"];
         if ([tiresString isEqualToString:@""] || tiresString == nil)
@@ -199,11 +200,12 @@ NSString * const databaseName = @"maindb.sqlite";
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         NSLog(@"error");
-    NSString *query = [NSString stringWithFormat:@"UPDATE driver SET name=%@, AMB=%@, class=%@, kart=%@, tires=%@, chassis=%@, engines=%@ WHERE driverid=%i",
+    NSString *query = [NSString stringWithFormat:@"UPDATE driver SET name=%@, AMB=%@, class=%@, kart=%@, note=%@ tires=%@, chassis=%@, engines=%@ WHERE driverid=%i",
                        driver.name,
                        driver.AMB,
                        driver.driverclass,
                        driver.kart,
+                       driver.note,
                        [[driver tires] componentsJoinedByString:@","],
                        [[driver chassis] componentsJoinedByString:@","],
                        [[driver engines] componentsJoinedByString:@","],
@@ -292,6 +294,7 @@ NSString * const databaseName = @"maindb.sqlite";
                     [driver setDriverclass:[results stringForColumn:@"class"]];
                     [driver setName:[results stringForColumn:@"name"]];
                     [driver setKart:[results stringForColumn:@"kart"]];
+                    [driver setNote:[results stringForColumn:@"note"]];
                     [driver setAMB:[results stringForColumn:@"AMB"]];
                     [driver setEventid:[results intForColumn:@"eventid"]];
                     [driver setTires:[[tiresString componentsSeparatedByString:@","] mutableCopy]];
@@ -313,9 +316,10 @@ NSString * const databaseName = @"maindb.sqlite";
         return;
     [db executeUpdate:@"DELETE FROM driver WHERE eventid=?", [NSNumber numberWithInt:event.eventid]];
     for (id key in [JSON allKeys]) {
-        NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (name, kart, AMB, class, eventid) VALUES ('%@', '%@', '%@', '%@', %i)",
+        NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (name, kart, note, AMB, class, eventid) VALUES ('%@', '%@', '%@', '%@', '%@', %i)",
                            [NSString stringWithFormat:@"%@ %@", [[JSON objectForKey:key] objectForKey:@"firstname"], [[JSON objectForKey:key] objectForKey:@"lastname"]],
                            [[JSON objectForKey:key] objectForKey:@"kart"],
+                           [[JSON objectForKey:key] objectForKey:@"note"],
                            [[JSON objectForKey:key] objectForKey:@"amb"],
                            [[JSON objectForKey:key] objectForKey:@"class"],
                            [event eventid]
@@ -357,10 +361,11 @@ NSString * const databaseName = @"maindb.sqlite";
         if ([class isEqualToString:@""])
             class = @"None";
 
-        NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (driverid, name, kart, class, tires, chassis, engines, eventid) VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', %i)",
+        NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (driverid, name, kart, note, class, tires, chassis, engines, eventid) VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', %i)",
                            key,
                            [[JSON objectForKey:key] objectForKey:@"name"],
                            [[JSON objectForKey:key] objectForKey:@"kart"],
+                           [[JSON objectForKey:key] objectForKey:@"note"],
                            class,
                            [[JSON objectForKey:key] objectForKey:@"tires"],
                            [[JSON objectForKey:key] objectForKey:@"chassis"],

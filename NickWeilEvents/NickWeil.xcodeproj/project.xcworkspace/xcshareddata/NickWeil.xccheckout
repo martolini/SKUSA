@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>16478EEA-5B62-45E9-85B0-4BA537A6D0AA</string>
+	<string>5E61D448-0188-4641-B10D-806BDCE0977E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>NickWeil</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>D238836A-AB2F-4C0F-A26B-9913FBAD5105</key>
-		<string>ssh://github.com/martolini/NickWeilEvents.git</string>
+		<key>33FCD8CF-E7F1-4E95-9883-A8ED4B154792</key>
+		<string>ssh://github.com/martolini/SKUSA.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>NickWeil.xcodeproj/project.xcworkspace</string>
+	<string>NickWeilEvents/NickWeil.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D238836A-AB2F-4C0F-A26B-9913FBAD5105</key>
-		<string>../..</string>
+		<key>33FCD8CF-E7F1-4E95-9883-A8ED4B154792</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/martolini/NickWeilEvents.git</string>
+	<string>ssh://github.com/martolini/SKUSA.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D238836A-AB2F-4C0F-A26B-9913FBAD5105</string>
+	<string>33FCD8CF-E7F1-4E95-9883-A8ED4B154792</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D238836A-AB2F-4C0F-A26B-9913FBAD5105</string>
+			<string>33FCD8CF-E7F1-4E95-9883-A8ED4B154792</string>
 			<key>IDESourceControlWCCName</key>
-			<string>NickWeilEvents</string>
+			<string>GIT</string>
 		</dict>
 	</array>
 </dict>

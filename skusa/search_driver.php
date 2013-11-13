@@ -16,13 +16,14 @@ $driver = array();
 while (list($cid) = $result->fetch_row()) {
 	$driver['id'] = $cid;
 }
-$result = $mysqli->query("SELECT driver.name, driver.kart, event_class.class_name, event.start_date FROM driver
+$result = $mysqli->query("SELECT driver.name, driver.kart, driver.note, event_class.class_name, event.start_date FROM driver
 JOIN event ON event.id = driver.event_id
 JOIN event_class ON driver.class_id = event_class.id
 WHERE driver.id={$driver['id']}");
 while (list($name, $kart, $class, $date) = $result->fetch_row()) {
 	$driver['name'] = $name;
 	$driver['kart'] = $kart;
+	$driver['nort'] = $note;
 	$driver['class'] = $class;
 	$driver['date'] = $date;
 }

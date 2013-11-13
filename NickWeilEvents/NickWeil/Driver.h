@@ -18,7 +18,7 @@ typedef struct componentRange {
 
 @interface Driver : NSObject
 
-@property (nonatomic, strong) NSString *name, *kart, *driverclass, *AMB;
+@property (nonatomic, strong) NSString *name, *kart, *driverclass, *AMB, *note;
 @property (nonatomic) int driverid, eventid;
 @property (nonatomic, strong) NSMutableArray *tires, *chassis, *engines;
 

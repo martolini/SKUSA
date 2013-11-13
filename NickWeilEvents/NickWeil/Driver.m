@@ -11,7 +11,7 @@
 
 @implementation Driver
 @synthesize name, kart, driverclass;
-@synthesize AMB, driverid, eventid;
+@synthesize AMB, driverid, eventid, note;
 @synthesize tires, chassis, engines;
 
 + (BOOL) validateChassis:(int)lchassis {

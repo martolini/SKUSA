@@ -8,10 +8,10 @@ if ($mysqli->connect_error) {
     die('Connect Error: ' . $mysqli->connect_error);
 }
 
-$query = "SELECT id, name, kart, class_id FROM driver where event_id = 1";
+$query = "SELECT id, name, kart, note, class_id FROM driver where event_id = 1";
 $result = $mysqli->query($query);
 $driver = array();
-while (list($id, $name, $kart, $class_id) = $result->fetch_row()) {
+while (list($id, $name, $kart, $note, $class_id) = $result->fetch_row()) {
     $sub_query = "SELECT tire_id, engine_id, chassis_id from driver_tire JOIN driver_engine JOIN driver_chassis WHERE driver_tire.driver_id=$id AND driver_engine.driver_id=$id AND driver_chassis.driver_id=$id";
     $sub_result = $mysqli->query($sub_query);
     $tire_array = array();
@@ -35,6 +35,7 @@ while (list($id, $name, $kart, $class_id) = $result->fetch_row()) {
     $driver[$id] = array(
         'name' => $name,
         'kart' => $kart,
+        'note' => $note,
         'tires' => $tire_string,
         'engines' => $engine_string,
         'chassis' => $tire_string,
