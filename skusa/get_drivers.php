@@ -4,14 +4,13 @@ header("Content-type: text/json");
 $mysqli = new mysqli($host, $user, $passw, $database);
 
 $event_id = $_GET['id'];
-$ipod = $_GET['ipod'];
 
 // Works as of PHP 5.2.9 and 5.3.0.
 if ($mysqli->connect_error) {
     die('Connect Error: ' . $mysqli->connect_error);
 }
 
-$query = "SELECT id, name, kart, note, class_id FROM driver WHERE event_id = $event_id AND last_changed_by != '$ipod'";
+$query = "SELECT id, name, kart, note, class_id FROM driver WHERE event_id = $event_id";
 $result = $mysqli->query($query);
 $driver = array();
 while (list($id, $name, $kart, $note, $class_id) = $result->fetch_row()) {

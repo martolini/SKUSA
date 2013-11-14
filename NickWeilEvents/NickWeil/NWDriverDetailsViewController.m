@@ -34,10 +34,9 @@
     if (driver.engines == nil)
         self.driver.engines = [NSMutableArray array];
     self.classes = [NSArray arrayWithArray:[[DBHandler sharedManager] getClassesFromEventID:driver.eventid]];
-    changesMade = [NSMutableArray arrayWithCapacity:4];
+    changesMade = [NSMutableArray arrayWithCapacity:3];
     for (int i=0; i<3; ++i)
         [changesMade setObject:[NSNumber numberWithBool:NO] atIndexedSubscript:i];
-    changesMade[3] = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     self.title = [driver name];
     if ([self isNewDriver])
         [self setEditing:YES animated:YES];

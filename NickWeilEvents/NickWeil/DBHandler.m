@@ -351,6 +351,7 @@ NSString * const databaseName = @"maindb.sqlite";
 }
 
 - (void) storeDriversFromDatabaseWithJSON:(id)JSON andEventID:(int)eventID {
+    NSDate *start = [NSDate date];
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         return;
@@ -376,6 +377,7 @@ NSString * const databaseName = @"maindb.sqlite";
     }
     [db close];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
+    NSLog(@"%@", [start timeIntervalSinceNow]);
 }
 
 - (NSArray *)getClassesFromEventID:(int)eventId {
