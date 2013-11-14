@@ -15,13 +15,13 @@ $query = "SELECT id, name, kart, note, class_id, synced_with FROM driver WHERE e
 $result = $mysqli->query($query);
 $driver = array();
 while (list($id, $name, $kart, $note, $class_id, $synced_with) = $result->fetch_row()) {
-    if (strcmp($synced_with, $ipod) == 0) {
+    if (strpos($synced_with, $ipod) !== false) {
         $driver[$id] = array(
-            'synced': true
+            'synced' => true
             );
         continue;
     }
-    $mysqli->query("UPDATE driver SET synced_with = concat(synced_width, '$ipod') WHERE id=$id");
+    $mysqli->query("UPDATE driver SET synced_with = IFNULL(concat(synced_with, ',$ipod'), '$ipod') WHERE id=$id");
     //handle tires
     $sub_result = $mysqli->query("SELECT tire_id FROM driver_tire WHERE driver_id=$id");
     $tire_array = array();
@@ -74,7 +74,8 @@ while (list($id, $name, $kart, $note, $class_id, $synced_with) = $result->fetch_
         'tires' => $tire_string,
         'engines' => $engine_string,
         'chassis' => $chassis_string,
-        'class' => $class_name
+        'class' => $class_name,
+        'synced' => false
     );
 }
 
