@@ -79,7 +79,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [[NetworkHandler sharedManager] getTireRange];
+        //[[NetworkHandler sharedManager] getTireRange];
         if ([JSON count]) {
             if ([userDefaults objectForKey:@"driverJSON"]) {
                 if (!([(NSDictionary *)[userDefaults objectForKey:@"driverJSON"] isEqualToDictionary:(NSDictionary *)JSON])) {
