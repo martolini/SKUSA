@@ -100,8 +100,10 @@
         [[NetworkHandler sharedManager] createNewDriverFromDriver:self.driver];
         [self setIsNewDriver:NO];
     }
-    else
+    else {
         [[NetworkHandler sharedManager] syncDriver:self.driver andChanges:changesMade];
+        [[DBHandler sharedManager] updateDriver:driver];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
 }
 
