@@ -355,8 +355,6 @@ NSString * const databaseName = @"maindb.sqlite";
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         return;
-    NSString *deleteQuery = [NSString stringWithFormat:@"DELETE FROM driver WHERE eventid=%i", eventID];
-    [db executeUpdate:deleteQuery];
     FMResultSet *results = [db executeQuery:@"SELECT driverid FROM driver"];
     while ([results next]) {
         NSString *driver_id = [results stringForColumn:@"driverid"];
