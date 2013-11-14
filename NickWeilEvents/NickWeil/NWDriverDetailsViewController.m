@@ -102,8 +102,8 @@
     }
     else {
         [[NetworkHandler sharedManager] syncDriver:self.driver andChanges:changesMade];
-        [[DBHandler sharedManager] updateDriver:driver];
     }
+    [[DBHandler sharedManager] updateDriver:driver];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
 }
 

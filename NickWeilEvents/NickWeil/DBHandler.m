@@ -200,9 +200,8 @@ NSString * const databaseName = @"maindb.sqlite";
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         NSLog(@"error");
-    NSString *query = [NSString stringWithFormat:@"UPDATE driver SET name=%@, AMB=%@, class=%@, kart=%@, note=%@ tires=%@, chassis=%@, engines=%@ WHERE driverid=%i",
+    NSString *query = [NSString stringWithFormat:@"UPDATE driver SET name='%@', class='%@', kart='%@', note='%@', tires='%@', chassis='%@', engines='%@' WHERE driverid=%i",
                        driver.name,
-                       driver.AMB,
                        driver.driverclass,
                        driver.kart,
                        driver.note,

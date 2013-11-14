@@ -19,7 +19,7 @@
 //    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"eventJSON"];
     [DBHandler sharedManager];
     [NetworkHandler sharedManager];
-    NSLog(@"%@", [[[UIDevice currentDevice] identifierForVendor] UUIDString]);
+    //NSLog(@"%@", [[[UIDevice currentDevice] identifierForVendor] UUIDString]);
     return YES;
 }
 
