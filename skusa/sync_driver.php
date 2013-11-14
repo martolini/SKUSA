@@ -11,6 +11,7 @@ $driver_class = $_GET['class'];
 $driver_tires = $_GET['tire'];
 $driver_engines = $_GET['engine'];
 $driver_chassis = $_GET['chassis'];
+$ipod = $_GET['ipod'];
 
 $event_result = $mysqli->query("SELECT event_id FROM driver WHERE id={$driver_id}");
 $event_id = -1;
@@ -25,7 +26,7 @@ while (list($cid) = $class_result->fetch_row()) {
 }
 
 // handle name, kart
-$mysqli->query("UPDATE driver SET name='$driver_name', kart='$driver_kart', note='$driver_note', class_id=$class_id WHERE id = $driver_id");
+$mysqli->query("UPDATE driver SET name='$driver_name', kart='$driver_kart', note='$driver_note', class_id=$class_id, synced_with='$ipod' WHERE id = $driver_id");
 
 // handle tires.
 

@@ -75,7 +75,7 @@
 
 - (BOOL) syncAllDriversWithEventID:(int) eventID {
     [MBHUDView hudWithBody:@"Synchronizing" type:MBAlertViewHUDTypeActivityIndicator hidesAfter:10 show:YES];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/get_drivers.php?id=%i", ipaddress, eventID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/get_drivers.php?id=%i&ipod=%@", ipaddress, eventID, [[[UIDevice currentDevice] identifierForVendor] UUIDString]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -93,15 +93,14 @@
             else {
                 [[DBHandler sharedManager] storeDriversFromDatabaseWithJSON:JSON andEventID:eventID];
                 [userDefaults setObject:JSON forKey:@"driverJSON"];
-                [userDefaults synchronize];
             }
         }
-        [MBHUDView dismissCurrentHUDAfterDelay:0.2];
+        [MBHUDView dismissCurrentHUD];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         [self setConnected:NO];
         [self checkConnectionFromString:@""];
         NSLog(@"error = %@", error);
-        [MBHUDView dismissCurrentHUDAfterDelay:0.2];
+        [MBHUDView dismissCurrentHUD];
     }];
     [op start];
     return YES;
@@ -180,7 +179,7 @@
     NSString *chassis = [[changesMade objectAtIndex:NWTableOrderChassis] boolValue] ? [driver.chassis componentsJoinedByString:@","] : @"-1";
     NSString *engines = [[changesMade objectAtIndex:NWTableOrderEngines] boolValue] ? [driver.engines componentsJoinedByString:@","] : @"-1";
     
-    NSString *stringUrl = [NSString stringWithFormat:@"http://%@/sync_driver.php?id=%i&name=%@&kart=%@&note=%@&class=%@&tire=%@&chassis=%@&engine=%@",
+    NSString *stringUrl = [NSString stringWithFormat:@"http://%@/sync_driver.php?id=%i&name=%@&kart=%@&note=%@&class=%@&tire=%@&chassis=%@&engine=%@&ipod=%@",
                            ipaddress,
                            driver.driverid,
                            driver.name,
@@ -189,7 +188,8 @@
                            driver.driverclass,
                            tires,
                            chassis,
-                           engines];
+                           engines,
+                           [[[UIDevice currentDevice] identifierForVendor] UUIDString]];
     
     NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                                     NULL,

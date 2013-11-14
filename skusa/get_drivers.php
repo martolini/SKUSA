@@ -4,16 +4,24 @@ header("Content-type: text/json");
 $mysqli = new mysqli($host, $user, $passw, $database);
 
 $event_id = $_GET['id'];
+$ipod = $_GET['ipod'];
 
 // Works as of PHP 5.2.9 and 5.3.0.
 if ($mysqli->connect_error) {
     die('Connect Error: ' . $mysqli->connect_error);
 }
 
-$query = "SELECT id, name, kart, note, class_id FROM driver WHERE event_id = $event_id";
+$query = "SELECT id, name, kart, note, class_id, synced_with FROM driver WHERE event_id = $event_id";
 $result = $mysqli->query($query);
 $driver = array();
-while (list($id, $name, $kart, $note, $class_id) = $result->fetch_row()) {
+while (list($id, $name, $kart, $note, $class_id, $synced_with) = $result->fetch_row()) {
+    if (strcmp($synced_with, $ipod) == 0) {
+        $driver[$id] = array(
+            'synced': true
+            );
+        continue;
+    }
+    $mysqli->query("UPDATE driver SET synced_with = concat(synced_width, '$ipod') WHERE id=$id");
     //handle tires
     $sub_result = $mysqli->query("SELECT tire_id FROM driver_tire WHERE driver_id=$id");
     $tire_array = array();
@@ -69,7 +77,6 @@ while (list($id, $name, $kart, $note, $class_id) = $result->fetch_row()) {
         'class' => $class_name
     );
 }
-
 
 $mysqli->close();
 

@@ -357,13 +357,22 @@ NSString * const databaseName = @"maindb.sqlite";
         return;
     NSString *deleteQuery = [NSString stringWithFormat:@"DELETE FROM driver WHERE eventid=%i", eventID];
     [db executeUpdate:deleteQuery];
+    FMResultSet *results = [db executeQuery:@"SELECT driverid FROM driver"];
+    while ([results next]) {
+        NSString *driver_id = [results stringForColumn:@"driverid"];
+        if (![[JSON allKeys] containsObject:driver_id]) {
+            [db executeUpdate:@"DELETE FROM driver WHERE driverid=%@", driver_id];
+        }
+    }
     for (id key in [JSON allKeys]) {
+        if ([[[JSON objectForKey:key] objectForKey:@"synced"] boolValue]) {
+            continue;
+        }
         NSString *class = [[JSON objectForKey:key] objectForKey:@"class"];
         if ([class isEqualToString:@""])
             class = @"None";
 
-        NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (driverid, name, kart, note, class, tires, chassis, engines, eventid) VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', %i)",
-                           key,
+        NSString *query = [NSString stringWithFormat:@"UPDATE driver SET name='%@', kart='%@', note='%@', class='%@', tires='%@', chassis='%@', engines='%@', eventid=%i WHERE driverid=%@",
                            [[JSON objectForKey:key] objectForKey:@"name"],
                            [[JSON objectForKey:key] objectForKey:@"kart"],
                            [[JSON objectForKey:key] objectForKey:@"note"],
@@ -371,13 +380,14 @@ NSString * const databaseName = @"maindb.sqlite";
                            [[JSON objectForKey:key] objectForKey:@"tires"],
                            [[JSON objectForKey:key] objectForKey:@"chassis"],
                            [[JSON objectForKey:key] objectForKey:@"engines"],
-                           eventID
+                           eventID,
+                           key
                            ];
         [db executeUpdate:query];
     }
     [db close];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
-    NSLog(@"%@", [start timeIntervalSinceNow]);
+    NSLog(@"%f", [start timeIntervalSinceNow]);
 }
 
 - (NSArray *)getClassesFromEventID:(int)eventId {
