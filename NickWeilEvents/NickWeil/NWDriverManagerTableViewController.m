@@ -15,8 +15,9 @@
 #import "NetworkHandler.h"
 
 @implementation NWDriverManagerTableViewController
-@synthesize driverArray, driverIndex;
+@synthesize driverArray, driverIndex, filteredDriversArray, filteredDriversIndex;
 @synthesize eventId;
+@synthesize driverSearchBar;
 
 - (void) initializeArrays {
     // Setting the driverArray to the already stored array in NSUserDefaults. Then we make a new array which contains the starting letters of each event.
@@ -46,6 +47,11 @@
         }
     }
     driverIndex = [[driverIndex sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] mutableCopy];
+    if (filteredDriversArray == nil)
+        filteredDriversArray = [NSMutableArray arrayWithCapacity:driverArray.count];
+    if (filteredDriversIndex == nil)
+        filteredDriversIndex = [NSMutableArray array];
+    
 }
 
 - (void) initializeBarButtons {
@@ -94,6 +100,7 @@
 
 - (void) driverDidChange : (NSNotification *) note {
     [self initializeArrays];
+    [self.searchDisplayController.searchResultsTableView reloadData];
     [self.tableView reloadData];
 }
 
@@ -114,17 +121,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+        return [filteredDriversIndex count];
     return [driverIndex count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // Printing out the letter from our eventIndex made in initializeArrays.
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+        return [filteredDriversIndex objectAtIndex:section];
     return [driverIndex objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Finds how many events starting with the letter in the section using a NSPredicate and returning it.
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSString *class = [filteredDriversIndex objectAtIndex:section];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.driverclass like[cd] %@", class];
+        return [[filteredDriversArray filteredArrayUsingPredicate:predicate] count];
+    }
     NSString *class = [driverIndex objectAtIndex:section];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.driverclass like[cd] %@", class];
     return [[driverArray filteredArrayUsingPredicate:predicate] count];
@@ -133,22 +149,33 @@
 - (DriverManagerCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    DriverManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    DriverManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[DriverManagerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSString *class = [driverIndex objectAtIndex:indexPath.section];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.driverclass like[cd] %@", class];
-    NSArray *driversWithFirstChar = [driverArray filteredArrayUsingPredicate:predicate];
-    if ([driversWithFirstChar count] > 0) {
-        [cell setUpWithDriver:[driversWithFirstChar objectAtIndex:indexPath.row]];
-
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSString *class = [filteredDriversIndex objectAtIndex:indexPath.section];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.driverclass like[cd] %@", class];
+        NSArray *driversWithFirstChar = [filteredDriversArray filteredArrayUsingPredicate:predicate];
+        if ([driversWithFirstChar count] > 0) {
+             [cell setUpWithDriver:[driversWithFirstChar objectAtIndex:indexPath.row]];
+        }
+    }
+    else {
+        NSString *class = [driverIndex objectAtIndex:indexPath.section];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.driverclass like[cd] %@", class];
+        NSArray *driversWithFirstChar = [driverArray filteredArrayUsingPredicate:predicate];
+        if ([driversWithFirstChar count] > 0) {
+            [cell setUpWithDriver:[driversWithFirstChar objectAtIndex:indexPath.row]];
+        }
     }
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+        return NO;
     return YES;
 }
 
@@ -168,6 +195,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:kSegueIdentifierDriverDetails sender:[tableView cellForRowAtIndexPath:indexPath]];
+}
+
+#pragma mark - Content Filtering
+
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [self.filteredDriversArray removeAllObjects];
+    [self.filteredDriversIndex removeAllObjects];
+    // Filter the array using NSPredicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.name contains[c] %@) OR (SELF.kart contains[c] %@) OR (SELF.driverclass contains[c]) %@",searchText, searchText, searchText];
+    filteredDriversArray = [NSMutableArray arrayWithArray:[driverArray filteredArrayUsingPredicate:predicate]];
+    for (Driver *driver in filteredDriversArray) {
+        if (![filteredDriversIndex containsObject:driver.driverclass])
+            [filteredDriversIndex addObject:driver.driverclass];
+    }
+    filteredDriversIndex = [[filteredDriversIndex sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] mutableCopy];
+}
+
+#pragma mark - UISearchDisplayController Delegate
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

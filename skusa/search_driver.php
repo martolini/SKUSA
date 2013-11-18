@@ -23,7 +23,7 @@ WHERE driver.id={$driver['id']}");
 while (list($name, $kart, $class, $date) = $result->fetch_row()) {
 	$driver['name'] = $name;
 	$driver['kart'] = $kart;
-	$driver['nort'] = $note;
+	$driver['note'] = $note;
 	$driver['class'] = $class;
 	$driver['date'] = $date;
 }

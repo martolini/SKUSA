@@ -10,11 +10,13 @@
 #import <UIKit/UIKit.h>
 #import "Driver.h"
 
-@interface NWDriverManagerTableViewController : UITableViewController
+@interface NWDriverManagerTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic) int eventId;
 @property (strong, nonatomic) NSMutableArray *driverArray;
 @property (strong, nonatomic) NSMutableArray *driverIndex;
+@property (strong, nonatomic) NSMutableArray *filteredDriversArray, *filteredDriversIndex;
+@property (weak, nonatomic) IBOutlet UISearchBar *driverSearchBar;
 
 - (void) initializeArrays; // Initializing the array, getting the full event from the database
 - (void) initializeBarButtons;

@@ -170,7 +170,7 @@
 - (void)viewDidLoad
 {
     //self.events = [NSArray arrayWithArray:[[DBHandler sharedManager] getAllShortEvents]];
-    self.events = [NSArray array];
+    self.events = [NSMutableArray array];
     selectedEventIndex = -1;
     [super viewDidLoad];
 }
