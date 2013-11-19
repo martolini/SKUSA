@@ -9,7 +9,6 @@
 #import "NWAppDelegate.h"
 #import "DBHandler.h"
 #import "NetworkHandler.h"
-#import "Flurry.h"
 
 @implementation NWAppDelegate
 
@@ -20,8 +19,6 @@
 //    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"eventJSON"];
     [DBHandler sharedManager];
     [NetworkHandler sharedManager];
-    [Flurry setCrashReportingEnabled:YES];
-    [Flurry startSession:@"ZP5H39JKBGNZBNJ6ZDVR"];
     //NSLog(@"%@", [[[UIDevice currentDevice] identifierForVendor] UUIDString]);
     return YES;
 }

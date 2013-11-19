@@ -20,7 +20,6 @@
 		0B29C93916F60F72002A3936 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C93616F60F72002A3936 /* TPKeyboardAvoidingScrollView.m */; };
 		0B29C93A16F60F72002A3936 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C93816F60F72002A3936 /* TPKeyboardAvoidingTableView.m */; };
 		0B29C93D16F6157B002A3936 /* NWEventSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C93C16F6157B002A3936 /* NWEventSettingsViewController.m */; };
-		0B398102183B5F4500C7C06F /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B398101183B5F4500C7C06F /* libFlurry_4.3.0.a */; };
 		0B398104183B5F7200C7C06F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B398103183B5F7200C7C06F /* Security.framework */; };
 		0B49C8621703AFF9008FC648 /* NWDriverSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B49C8611703AFF9008FC648 /* NWDriverSearchViewController.m */; };
 		0B4C304517741BC40086AA8D /* 1Engine.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4C303917741BC40086AA8D /* 1Engine.png */; };
@@ -119,8 +118,6 @@
 		0B29C93816F60F72002A3936 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		0B29C93B16F6157B002A3936 /* NWEventSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWEventSettingsViewController.h; path = NickWeil/NWEventSettingsViewController.h; sourceTree = "<group>"; };
 		0B29C93C16F6157B002A3936 /* NWEventSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWEventSettingsViewController.m; path = NickWeil/NWEventSettingsViewController.m; sourceTree = "<group>"; };
-		0B398100183B5F4500C7C06F /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		0B398101183B5F4500C7C06F /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		0B398103183B5F7200C7C06F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0B49C8601703AFF9008FC648 /* NWDriverSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWDriverSearchViewController.h; path = NickWeil/NWDriverSearchViewController.h; sourceTree = "<group>"; };
 		0B49C8611703AFF9008FC648 /* NWDriverSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWDriverSearchViewController.m; path = NickWeil/NWDriverSearchViewController.m; sourceTree = "<group>"; };
@@ -257,7 +254,6 @@
 				0B5BA48516B6B74200047CFB /* UIKit.framework in Frameworks */,
 				0B5BA48716B6B74200047CFB /* Foundation.framework in Frameworks */,
 				0B5BA48916B6B74200047CFB /* CoreGraphics.framework in Frameworks */,
-				0B398102183B5F4500C7C06F /* libFlurry_4.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,15 +345,6 @@
 			name = TPAvoidKeyboard;
 			sourceTree = "<group>";
 		};
-		0B3980FF183B5F4500C7C06F /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				0B398100183B5F4500C7C06F /* Flurry.h */,
-				0B398101183B5F4500C7C06F /* libFlurry_4.3.0.a */,
-			);
-			path = Flurry;
-			sourceTree = "<group>";
-		};
 		0B4C303817741BC40086AA8D /* DriverIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,7 +416,6 @@
 			children = (
 				0B684E22183B5F920068A3F4 /* AdSupport.framework */,
 				0B398103183B5F7200C7C06F /* Security.framework */,
-				0B3980FF183B5F4500C7C06F /* Flurry */,
 				0BA8CFC71832D12600A88323 /* DTDevices.h */,
 				0BA8CFC81832D12600A88323 /* libdtdev.a */,
 				0BBDA67A17976EAE00CE1CD8 /* AudioToolbox.framework */,
