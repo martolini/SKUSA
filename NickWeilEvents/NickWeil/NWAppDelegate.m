@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
+//    NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"driverJSON"];
 //    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"eventJSON"];
     [DBHandler sharedManager];

@@ -475,12 +475,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="76h-1P-cAj">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="nzc-vH-3Kh">
                             <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="hWj-IS-ZIc" id="fcT-8I-nxW"/>
+                                <outlet property="delegate" destination="hWj-IS-ZIc" id="fx4-HM-eK6"/>
                             </connections>
                         </searchBar>
                         <prototypes>
@@ -535,12 +535,22 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Driver List" id="zwl-sN-3Zc"/>
                     <connections>
-                        <outlet property="driverSearchBar" destination="76h-1P-cAj" id="ljk-3F-Q1P"/>
+                        <outlet property="driverSearchBar" destination="nzc-vH-3Kh" id="g0x-ZU-RaH"/>
+                        <outlet property="searchDisplayController" destination="0R0-54-hlW" id="jc5-DI-cb2"/>
                         <segue destination="tnM-HJ-D9Q" kind="push" identifier="DriverDetails" id="alS-k7-RmI"/>
                         <segue destination="tnM-HJ-D9Q" kind="push" identifier="NewDriverDetails" id="Fww-gN-VEc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHF-ag-xOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="0R0-54-hlW">
+                    <connections>
+                        <outlet property="delegate" destination="hWj-IS-ZIc" id="92f-VC-1El"/>
+                        <outlet property="searchBar" destination="nzc-vH-3Kh" id="b5w-PS-Mgd"/>
+                        <outlet property="searchContentsController" destination="hWj-IS-ZIc" id="5QO-Ju-ZPl"/>
+                        <outlet property="searchResultsDataSource" destination="hWj-IS-ZIc" id="xAl-CT-q1H"/>
+                        <outlet property="searchResultsDelegate" destination="hWj-IS-ZIc" id="05I-hl-WnA"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3326" y="74"/>
         </scene>
