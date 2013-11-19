@@ -95,13 +95,14 @@
 //                [userDefaults setObject:JSON forKey:@"driverJSON"];
 //            }
 //        }
-        [[DBHandler sharedManager] storeDriversFromDatabaseWithJSON:JSON andEventID:eventID];
-        [MBHUDView dismissCurrentHUD];
+        if ([JSON count])
+            [[DBHandler sharedManager] storeDriversFromDatabaseWithJSON:JSON andEventID:eventID];
+        [MBHUDView dismissCurrentHUDAfterDelay:0.1];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         [self setConnected:NO];
         [self checkConnectionFromString:@""];
         NSLog(@"error = %@", error);
-        [MBHUDView dismissCurrentHUD];
+        [MBHUDView dismissCurrentHUDAfterDelay:0.1];
     }];
     [op start];
     return YES;
@@ -212,7 +213,7 @@
 }
 
 - (BOOL) createNewDriverFromDriver:(Driver *)driver{
-    NSString *strurl = [NSString stringWithFormat:@"http://%@/create_driver.php?name=%@&kart=%@&note=%@&event_id=%i&class=%@", ipaddress, driver.name, driver.kart, driver.note, driver.eventid, driver.driverclass];
+    NSString *strurl = [NSString stringWithFormat:@"http://%@/create_driver.php?name=%@&kart=%@&note=%@&event_id=%i&class=%@&ipod=%@", ipaddress, driver.name, driver.kart, driver.note, driver.eventid, driver.driverclass,[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
     NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                                     NULL,
                                                                                                     (CFStringRef)strurl,
