@@ -22,6 +22,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITextField *kartField;
 @property (weak, nonatomic) IBOutlet UITextField *ambField;
 @property (weak, nonatomic) IBOutlet UITextField *classField;
+@property (weak, nonatomic) IBOutlet UITextField *notesField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *tableData, *scannedBarcodes;
 @property (strong, nonatomic) Driver *driver;

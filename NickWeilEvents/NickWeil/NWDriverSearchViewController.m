@@ -60,6 +60,7 @@
     self.driver.name = @"";
     self.driver.kart = @"";
     self.driver.AMB = @"";
+    self.driver.note = @"";
     self.driver.driverclass = @"";
     [self.driver.tires removeAllObjects];
     [self.driver.chassis removeAllObjects];
@@ -72,6 +73,7 @@
     self.classField.text = driver.driverclass;
     self.ambField.text = driver.AMB;
     self.kartField.text = driver.kart;
+    self.notesField.text = driver.note;
     if (driver.tires == nil)
         self.driver.tires = [NSMutableArray array];
     if (driver.chassis == nil)
