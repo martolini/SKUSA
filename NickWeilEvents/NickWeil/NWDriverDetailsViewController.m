@@ -191,10 +191,6 @@
         } else {
             switch (lalert.tag) {
                 case NWTableOrderTires: {
-                    if ([[DBHandler sharedManager] hasDuplicate:text  inEvent:driver.eventid andType:NWTableOrderTires]) {
-                        [self showAlertWithTitle:@"Error" andMessage:@"Tire Number already in use."];
-                        return;
-                    }
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                     int lower = [[defaults stringForKey:@"kTireRangeLow"] intValue];
                     int higher = [[defaults stringForKey:@"kTireRangeHigh"] intValue];
@@ -204,6 +200,10 @@
                             [self playSound];
                             return;
                         }
+                    }
+                    if ([[DBHandler sharedManager] hasDuplicate:text  inEvent:driver.eventid andType:NWTableOrderTires]) {
+                        [self showAlertWithTitle:@"Error" andMessage:@"Tire Number already in use."];
+                        return;
                     }
                     break;
                 }
