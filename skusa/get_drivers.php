@@ -21,7 +21,9 @@ while (list($id, $name, $kart, $note, $class_id, $synced_with) = $result->fetch_
             );
         continue;
     }
-    $mysqli->query("UPDATE driver SET synced_with = IFNULL(concat(synced_with, ',$ipod'), '$ipod') WHERE id=$id");
+    else {
+        $mysqli->query("UPDATE driver SET synced_with = IFNULL(concat(synced_with, ',$ipod'), '$ipod') WHERE id=$id"); 
+    }
     //handle tires
     $sub_result = $mysqli->query("SELECT tire_id FROM driver_tire WHERE driver_id=$id");
     $tire_array = array();
