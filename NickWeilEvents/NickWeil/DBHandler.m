@@ -243,46 +243,26 @@ NSString * const databaseName = @"maindb.sqlite";
 }
 
 - (BOOL) hasDuplicate:(NSString *)someid inEvent:(int) eventId andType:(int)type{
-//    FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
-//    if (![db open])
-//        NSLog(@"error");
-//    NSString *table = @"";
-//    switch (type) {
-//        case 0:
-//            table = @"tires";
-//            break;
-//        case 1:
-//            table = @"chassis";
-//            break;
-//        default:
-//            table = @"engines";
-//            break;
-//    }
-//    NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM driver WHERE eventid=%i", table, type];
-//    FMResultSet *results = [db executeQuery:query];
-//    while ([results next]) {
-//        if ([[[results objectForColumnName:table] componentsSeparatedByString:@","] containsObject:someid])
-//            return YES;
-//    }
-//    return NO;
-    for (Driver *shortDriver in [self getAllShortDriversWithEventID:eventId]) {
-        Driver *driver = [self getWholeDriverFromShortDriver:shortDriver];
-        NSMutableArray *array;
-        switch (type) {
-            case 0:
-                array = [NSMutableArray arrayWithArray:[driver tires]];
-                break;
-            case 1:
-                array = [NSMutableArray arrayWithArray:[driver chassis]];
-                break;
-            default:
-                array = [NSMutableArray arrayWithArray:[driver engines]];
-                break;
-        }
-        for (NSString *aid in array) {
-                if ([aid isEqualToString:someid])
-                    return YES;
-            }
+    FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
+    if (![db open])
+        NSLog(@"error");
+    NSString *table = @"";
+    switch (type) {
+        case 0:
+            table = @"tires";
+            break;
+        case 1:
+            table = @"chassis";
+            break;
+        default:
+            table = @"engines";
+            break;
+    }
+    NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM driver WHERE eventid=%i", table, eventId];
+    FMResultSet *results = [db executeQuery:query];
+    while ([results next]) {
+        if ([[[results objectForColumnName:table] componentsSeparatedByString:@","] containsObject:someid])
+            return YES;
     }
     return NO;
 }
