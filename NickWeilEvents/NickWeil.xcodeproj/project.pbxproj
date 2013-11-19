@@ -20,6 +20,8 @@
 		0B29C93916F60F72002A3936 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C93616F60F72002A3936 /* TPKeyboardAvoidingScrollView.m */; };
 		0B29C93A16F60F72002A3936 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C93816F60F72002A3936 /* TPKeyboardAvoidingTableView.m */; };
 		0B29C93D16F6157B002A3936 /* NWEventSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C93C16F6157B002A3936 /* NWEventSettingsViewController.m */; };
+		0B398102183B5F4500C7C06F /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B398101183B5F4500C7C06F /* libFlurry_4.3.0.a */; };
+		0B398104183B5F7200C7C06F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B398103183B5F7200C7C06F /* Security.framework */; };
 		0B49C8621703AFF9008FC648 /* NWDriverSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B49C8611703AFF9008FC648 /* NWDriverSearchViewController.m */; };
 		0B4C304517741BC40086AA8D /* 1Engine.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4C303917741BC40086AA8D /* 1Engine.png */; };
 		0B4C304617741BC40086AA8D /* 1Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4C303A17741BC40086AA8D /* 1Frame.png */; };
@@ -41,6 +43,7 @@
 		0B5BA49E16B6B74200047CFB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B5BA49C16B6B74200047CFB /* MainStoryboard.storyboard */; };
 		0B5BA4AD16B6C30500047CFB /* NWEventManagerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5BA4AC16B6C30500047CFB /* NWEventManagerTableViewController.m */; };
 		0B5BA4C216B71E1100047CFB /* NWEventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5BA4C116B71E1100047CFB /* NWEventDetailsViewController.m */; };
+		0B684E23183B5F920068A3F4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B684E22183B5F920068A3F4 /* AdSupport.framework */; };
 		0B70CC5C16BBF3A50035C41E /* EventManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B70CC5B16BBF3A50035C41E /* EventManagerCell.m */; };
 		0B9D2C30178F5BC50079F737 /* NSString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D2C1B178F5BC50079F737 /* NSString+Trim.m */; };
 		0B9D2C31178F5BC50079F737 /* UIFont+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D2C1D178F5BC50079F737 /* UIFont+Alert.m */; };
@@ -116,6 +119,9 @@
 		0B29C93816F60F72002A3936 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		0B29C93B16F6157B002A3936 /* NWEventSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWEventSettingsViewController.h; path = NickWeil/NWEventSettingsViewController.h; sourceTree = "<group>"; };
 		0B29C93C16F6157B002A3936 /* NWEventSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWEventSettingsViewController.m; path = NickWeil/NWEventSettingsViewController.m; sourceTree = "<group>"; };
+		0B398100183B5F4500C7C06F /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		0B398101183B5F4500C7C06F /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
+		0B398103183B5F7200C7C06F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0B49C8601703AFF9008FC648 /* NWDriverSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWDriverSearchViewController.h; path = NickWeil/NWDriverSearchViewController.h; sourceTree = "<group>"; };
 		0B49C8611703AFF9008FC648 /* NWDriverSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWDriverSearchViewController.m; path = NickWeil/NWDriverSearchViewController.m; sourceTree = "<group>"; };
 		0B4C303917741BC40086AA8D /* 1Engine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1Engine.png; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		0B5BA4AC16B6C30500047CFB /* NWEventManagerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWEventManagerTableViewController.m; path = NickWeil/NWEventManagerTableViewController.m; sourceTree = "<group>"; };
 		0B5BA4C016B71E1100047CFB /* NWEventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWEventDetailsViewController.h; path = NickWeil/NWEventDetailsViewController.h; sourceTree = "<group>"; };
 		0B5BA4C116B71E1100047CFB /* NWEventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWEventDetailsViewController.m; path = NickWeil/NWEventDetailsViewController.m; sourceTree = "<group>"; };
+		0B684E22183B5F920068A3F4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0B70CC5A16BBF3A50035C41E /* EventManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventManagerCell.h; path = NickWeil/EventManagerCell.h; sourceTree = "<group>"; };
 		0B70CC5B16BBF3A50035C41E /* EventManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventManagerCell.m; path = NickWeil/EventManagerCell.m; sourceTree = "<group>"; };
 		0B9D2C1A178F5BC50079F737 /* NSString+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trim.h"; sourceTree = "<group>"; };
@@ -238,16 +245,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B684E23183B5F920068A3F4 /* AdSupport.framework in Frameworks */,
+				0B398104183B5F7200C7C06F /* Security.framework in Frameworks */,
+				0BD42AB51712E93100A421EF /* SystemConfiguration.framework in Frameworks */,
 				0BBDA67B17976EAE00CE1CD8 /* AudioToolbox.framework in Frameworks */,
 				0BA8CFC91832D12600A88323 /* libdtdev.a in Frameworks */,
 				0BD42AB71712E93500A421EF /* MobileCoreServices.framework in Frameworks */,
-				0BD42AB51712E93100A421EF /* SystemConfiguration.framework in Frameworks */,
 				0B07E48016FB132900DB3ABD /* QuartzCore.framework in Frameworks */,
 				0BDDEF1716F903AF0090A9A3 /* ExternalAccessory.framework in Frameworks */,
 				0BDDEF1516F901330090A9A3 /* libsqlite3.0.dylib in Frameworks */,
 				0B5BA48516B6B74200047CFB /* UIKit.framework in Frameworks */,
 				0B5BA48716B6B74200047CFB /* Foundation.framework in Frameworks */,
 				0B5BA48916B6B74200047CFB /* CoreGraphics.framework in Frameworks */,
+				0B398102183B5F4500C7C06F /* libFlurry_4.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +349,15 @@
 			name = TPAvoidKeyboard;
 			sourceTree = "<group>";
 		};
+		0B3980FF183B5F4500C7C06F /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				0B398100183B5F4500C7C06F /* Flurry.h */,
+				0B398101183B5F4500C7C06F /* libFlurry_4.3.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		0B4C303817741BC40086AA8D /* DriverIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +427,9 @@
 		0B5BA48316B6B74200047CFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B684E22183B5F920068A3F4 /* AdSupport.framework */,
+				0B398103183B5F7200C7C06F /* Security.framework */,
+				0B3980FF183B5F4500C7C06F /* Flurry */,
 				0BA8CFC71832D12600A88323 /* DTDevices.h */,
 				0BA8CFC81832D12600A88323 /* libdtdev.a */,
 				0BBDA67A17976EAE00CE1CD8 /* AudioToolbox.framework */,
@@ -771,6 +793,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Users/martinroed/Dropbox/NickWeil/NickWeilBeta,
+					/Users/martinroed/Documents/NickWeil/GIT/NickWeilEvents/Flurry,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -787,6 +810,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Users/martinroed/Dropbox/NickWeil/NickWeilBeta,
+					/Users/martinroed/Documents/NickWeil/GIT/NickWeilEvents/Flurry,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
