@@ -287,9 +287,9 @@
     }
     else  {
         cellText = [[tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", indexPath.row];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", indexPath.row+1];
     }
-    if (indexPath.row > 8) {
+    if (indexPath.row >= 8) {
         [cell.textLabel setTextColor:[UIColor blueColor]];
     }
     else
