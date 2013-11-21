@@ -281,9 +281,19 @@
                 break;
         }
     }
-    else if ([[tableData objectAtIndex:indexPath.section] count] == 0)
+    else if ([[tableData objectAtIndex:indexPath.section] count] == 0) {
         cellText = @"None";
-    else cellText = [[tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = @"";
+    }
+    else  {
+        cellText = [[tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", indexPath.row];
+    }
+    if (indexPath.row > 8) {
+        [cell.textLabel setTextColor:[UIColor blueColor]];
+    }
+    else
+        [cell.textLabel setTextColor:[UIColor blackColor]];
     cell.textLabel.text = cellText;
     return cell;
 }
