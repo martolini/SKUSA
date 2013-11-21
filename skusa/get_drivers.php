@@ -11,11 +11,24 @@ if ($mysqli->connect_error) {
     die('Connect Error: ' . $mysqli->connect_error);
 }
 
+$found = false;
+$ipod_res = $mysqli->query("SELECT id FROM scanners WHERE uuid like '$ipod'");
+while (list($ipodid) = $ipod_res->fetch_row()) {
+    $ipod = $ipodid;
+    $found = true;
+}
+
+if (!$found) {
+    $mysqli->query("INSERT INTO scanners (uuid) VALUES ('$ipod')");
+    $ipod = $mysqli->insert_id;
+}
+
 $query = "SELECT id, name, kart, note, class_id, synced_with FROM driver WHERE event_id = $event_id";
 $result = $mysqli->query($query);
 $driver = array();
 while (list($id, $name, $kart, $note, $class_id, $synced_with) = $result->fetch_row()) {
-    if (strpos($synced_with, $ipod) !== false) {
+    $ipod_array = explode(",",$synced_with);
+    if (in_array($ipod, $ipod_array)) {
         $driver[$id] = array(
             'synced' => true
             );

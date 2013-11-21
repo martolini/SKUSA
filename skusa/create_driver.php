@@ -8,7 +8,19 @@ $driver_kart = $_GET['kart'];
 $driver_note = $_GET['note'];
 $driver_event_id = $_GET['event_id'];
 $driver_class = $_GET['class'];
-$ipod = $_GET['$ipod'];
+$ipod = $_GET['ipod'];
+
+
+$found = false;
+$ipod_result = $mysqli->query("SELECT id FROM scanners WHERE uuid like '$ipod'");
+while (list($ipodid) = $ipod_result->fetch_row()) {
+	$ipod = $ipodid;
+	$found = true;
+}
+if (!$found) {
+	$res = $mysqli->query("INSERT INTO scanners (uuid) VALUES ('$ipod')");
+	$ipod = $mysqli->insert_id;
+}
 
 if (!$driver_name)
     $driver_name = "temp";

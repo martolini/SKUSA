@@ -25,6 +25,19 @@ while (list($cid) = $class_result->fetch_row()) {
     $class_id = $cid;
 }
 
+//get ipod
+$found = false;
+$ipod_res = $mysqli->query("SELECT id FROM scanners WHERE uuid = '$ipod'");
+while (list($ipod_id) = $ipod_res->fetch_row()) {
+	$ipod = $ipod_id;
+	$found = true;
+}
+
+if (!$found) {
+	$mysqli->query("INSERT INTO scanners (uuid) VALUES ('$ipod')");
+	$ipod = $mysqli->insert_id;
+}
+
 // handle name, kart
 $mysqli->query("UPDATE driver SET name='$driver_name', kart='$driver_kart', note='$driver_note', class_id=$class_id, synced_with='$ipod' WHERE id = $driver_id");
 
