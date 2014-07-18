@@ -31,6 +31,7 @@
 - (Event *) createNewEvent; // When pressing Add Event, it creates a new entry in the database and return the Event with an ID ready to be updated.
 - (Driver *) createNewDriverWithEventId : (int) eventId; // Creating a driver with a specific eventid, returning a 'short driver'.
 
+- (Driver *) createNewDriverWithDriverId:(int)driverId andEventId:(int) eventId;
 - (void) updateEvent : (Event *) event; // Updating an event in the database
 - (void) updateDriver : (Driver *) driver; // Updating driver with the details edited in NWDriverDetails
 

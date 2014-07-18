@@ -226,6 +226,18 @@ NSString * const databaseName = @"maindb.sqlite";
     return driver;
 }
 
+- (Driver *) createNewDriverWithDriverId:(int)driverId andEventId:(int) eventId {
+    FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
+    if (![db open])
+        NSLog(@"error");
+    [db executeUpdate:@"INSERT INTO driver (driverid, name, eventid) VALUES (?, ?) ", [NSNumber numberWithInt:driverId], @"New driver", [NSNumber numberWithInt:eventId]];
+    Driver *driver = [[Driver alloc] init];
+    driver.driverid = driverId;
+    driver.name = @"New Driver";
+    driver.eventid = eventId;
+    return driver;
+}
+
 - (void) deleteDriver:(Driver *)driver {
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])

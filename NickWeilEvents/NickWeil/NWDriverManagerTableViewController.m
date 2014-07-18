@@ -99,10 +99,7 @@
     [MBHUDView hudWithBody:@"Creating new driver..." type:MBAlertViewHUDTypeActivityIndicator hidesAfter:0 show:YES];
     [[NetworkHandler sharedManager] createNewDriver:self.eventId withSuccess:^(int driverid) {
         [MBHUDView dismissCurrentHUD];
-        Driver *driver = [[Driver alloc] init];
-        driver.driverid = driverid;
-        driver.eventid = self.eventId;
-        driver.name = @"The new driver";
+        Driver *driver = [[DBHandler sharedManager] createNewDriverWithDriverId:driverid andEventId:self.eventId];
         [self performSegueWithIdentifier:kSegueIdentifierNewDriverDetails sender:driver];
     } andError:^{
         [MBHUDView dismissCurrentHUD];
