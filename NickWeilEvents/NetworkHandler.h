@@ -26,6 +26,7 @@
 - (BOOL) deleteEvent:(Event *)event;
 - (BOOL) createNewDriverFromDriver:(Driver *)driver;
 - (BOOL) deleteDriver:(Driver *)driver;
+- (BOOL) createNewDriver:(int) eventid withSuccess:(void ( ^ )(int) ) success andError:(void ( ^ )(void) ) errorblock;
 
 - (void) checkConnectionFromString:(NSString *)view;
 - (void) pushTireRange;

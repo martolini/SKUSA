@@ -12,6 +12,7 @@
 #import "DBHandler.h"
 #import "DriverManagerCell.h"
 #import "NWConstants.h"
+#import "MBHUDView.h"
 #import "NetworkHandler.h"
 
 @implementation NWDriverManagerTableViewController
@@ -95,7 +96,18 @@
 }
 
 - (void) didPressAddDriver {
-    [self performSegueWithIdentifier:kSegueIdentifierNewDriverDetails sender:self];
+    [MBHUDView hudWithBody:@"Creating new driver..." type:MBAlertViewHUDTypeActivityIndicator hidesAfter:0 show:YES];
+    [[NetworkHandler sharedManager] createNewDriver:self.eventId withSuccess:^(int driverid) {
+        [MBHUDView dismissCurrentHUD];
+        Driver *driver = [[Driver alloc] init];
+        driver.driverid = driverid;
+        driver.eventid = self.eventId;
+        driver.name = @"The new driver";
+        [self performSegueWithIdentifier:kSegueIdentifierNewDriverDetails sender:driver];
+    } andError:^{
+        [MBHUDView dismissCurrentHUD];
+        [MBHUDView hudWithBody:@"Something went wrong.." type:MBAlertViewHUDTypeExclamationMark hidesAfter:1.5 show:YES];
+        }];
 }
 
 - (void) driverDidChange : (NSNotification *) note {
@@ -105,14 +117,16 @@
 }
 
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(DriverManagerCell *)sender {
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NWDriverDetailsViewController *dest = (NWDriverDetailsViewController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:kSegueIdentifierDriverDetails]) {
-        [dest setDriver:sender.driver];
+        DriverManagerCell *cell = ((DriverManagerCell *) sender);
+        [dest setDriver:cell.driver];
         [dest setIsNewDriver:NO];
     }
     else if ([segue.identifier isEqualToString:kSegueIdentifierNewDriverDetails]) {
-        [dest setDriver:[[DBHandler sharedManager] createNewDriverWithEventId:self.eventId]];
+        Driver *driver = (Driver *)sender;
+        [dest setDriver:driver];
         [dest setIsNewDriver:YES];
     }
 }

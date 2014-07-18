@@ -38,8 +38,9 @@
     for (int i=0; i<3; ++i)
         [changesMade setObject:[NSNumber numberWithBool:NO] atIndexedSubscript:i];
     self.title = [driver name];
-    if ([self isNewDriver])
+    if ([self isNewDriver]) {
         [self setEditing:YES animated:YES];
+    }
     else [self setUserInteractionEnabled:NO];
 }
 
@@ -96,13 +97,7 @@
     self.driver.chassis = [tableData objectAtIndex:NWTableOrderChassis];
     self.driver.engines = [tableData objectAtIndex:NWTableOrderEngines];
     self.title = driver.name;
-    if (isNewDriver) {
-        [[NetworkHandler sharedManager] createNewDriverFromDriver:self.driver];
-        [self setIsNewDriver:NO];
-    }
-    else {
-        [[NetworkHandler sharedManager] syncDriver:self.driver andChanges:changesMade];
-    }
+    [[NetworkHandler sharedManager] syncDriver:self.driver andChanges:changesMade];
     [[DBHandler sharedManager] updateDriver:driver];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
 }

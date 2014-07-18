@@ -23,6 +23,5 @@
 - (void) setUpWithEventID:(int)evid; // called from DriverManager to set the event
 - (void) didPressAddDriver; // Performing a segue, sending isNewDriver to NWDriverDetails
 - (void) driverDidChange : (NSNotification *) note; // Invoked from NWDriverDetails, telling the controller that the driver has changed.
-
 - (void) removeDriverFromArray : (NSIndexPath *)indexPath : (Driver *) driver; // Removing the driver from the array and database
 @end

@@ -232,6 +232,26 @@
     return YES;
 }
 
+- (BOOL) createNewDriver:(int) eventid withSuccess:(void ( ^ )(int) ) success andError:(void ( ^ )(void) ) errorblock  {
+    NSString *strurl = [NSString stringWithFormat:@"http://%@/create_new_driver.php?event_id=%i", ipaddress, eventid];
+    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                                    NULL,
+                                                                                                    (CFStringRef)strurl,
+                                                                                                    NULL,
+                                                                                                    (CFStringRef)@" ",
+                                                                                                    kCFStringEncodingUTF8 ));
+    NSURL *url = [NSURL URLWithString:encodedString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        success([JSON objectForKey:@"id"]);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        errorblock();
+    }];
+    [op start];
+    
+    return YES;
+}
+
 - (void) checkConnectionFromString:(NSString *)view {
     if (!connected) {
         [MBHUDView hudWithBody:@"Checking connection.." type:MBAlertViewHUDTypeActivityIndicator hidesAfter:10 show:YES];
@@ -239,7 +259,7 @@
             NSString *url = [NSString stringWithFormat:@"http://%@/test.php", ipaddress];
             NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
             [req setHTTPMethod:@"GET"];
-            [req setTimeoutInterval:5.0f];
+            [req setTimeoutInterval:2.0f];
             AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:req success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 if (JSON) {
                     if ([[JSON objectForKey:@"mysql_error"] boolValue]) {
@@ -257,7 +277,7 @@
                 }
                 else connected = NO;
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                [self showSetSettingsAlert:@"Could not connect to the server. Make sure you've set the right IPadress on the settingspage"];
+                [self showSetSettingsAlert:@"Could not connect to the server. Make sure you've set the right IPadress on the settings page"];
                 connected = NO;
                 NSLog(@"%@", error);
             }];
