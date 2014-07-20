@@ -243,7 +243,7 @@
     NSURL *url = [NSURL URLWithString:encodedString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        success([JSON objectForKey:@"id"]);
+        success([[JSON objectForKey:@"id"] intValue]);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         errorblock();
     }];

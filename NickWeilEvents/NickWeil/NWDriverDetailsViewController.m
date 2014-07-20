@@ -65,10 +65,10 @@
         }];
     }
     else {
-        [linea addDelegate:self];
-        [linea connect];
-        [linea barcodeSetScanMode:BARCODE_TYPE_DEFAULT error:nil];
-        [linea barcodeStartScan:nil];
+//        [linea addDelegate:self];
+//        [linea connect];
+//        [linea barcodeSetScanMode:BARCODE_TYPE_DEFAULT error:nil];
+//        [linea barcodeStartScan:nil];
 
         [UIView animateWithDuration:1 animations:^{
             self.segmentScan.alpha = 1.0;
@@ -91,7 +91,7 @@
     self.driver.name = self.nameField.text ? self.nameField.text : @"";
     self.driver.AMB = self.ambField.text ? self.ambField.text : @"";
     self.driver.kart = self.kartField.text ? self.kartField.text : @"";
-    self.driver.driverclass = self.classField.text ? self.classField.text : @"";
+    self.driver.driverclass = self.classField.text ? self.classField.text : @"None";
     self.driver.note = self.notesField.text ? self.notesField.text : @"";
     self.driver.tires = [tableData objectAtIndex:NWTableOrderTires];
     self.driver.chassis = [tableData objectAtIndex:NWTableOrderChassis];

@@ -33,14 +33,12 @@
     for (int i=0; i<self.driverArray.count; ++i) {
         [driverArray replaceObjectAtIndex:i withObject:[[DBHandler sharedManager] getWholeDriverFromShortDriver:[driverArray objectAtIndex:i]]];
     }
-    
     [driverArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *first = [obj1 kart];
         NSString *second = [obj2 kart];
         return [first compare:second options:NSNumericSearch];
     }];
     // Sort the indexArray
-    
     for (Driver *driver in driverArray) {
         NSString *class = [NSString stringWithFormat:@"%@", driver.driverclass];
         if (![driverIndex containsObject:class]) {

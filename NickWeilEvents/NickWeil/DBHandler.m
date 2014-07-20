@@ -22,7 +22,7 @@ NSString * const databaseName = @"maindb.sqlite";
         NSString *docsPath = [paths objectAtIndex:0];
         instance.databasePath = [docsPath stringByAppendingPathComponent:databaseName];
         
-        //[instance deleteDatabaseFromPhone];
+//        [instance deleteDatabaseFromPhone];
         
         [instance createAndCheckDatabase];
     }
@@ -222,6 +222,7 @@ NSString * const databaseName = @"maindb.sqlite";
     driver.driverid = db.lastInsertRowId;
     driver.name = @"New Driver";
     driver.eventid = eventId;
+    [db close];
     
     return driver;
 }
@@ -230,11 +231,19 @@ NSString * const databaseName = @"maindb.sqlite";
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         NSLog(@"error");
-    [db executeUpdate:@"INSERT INTO driver (driverid, name, eventid) VALUES (?, ?) ", [NSNumber numberWithInt:driverId], @"New driver", [NSNumber numberWithInt:eventId]];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO driver (driverid, name, class, eventid, tires, chassis, engines) VALUES (%i, 'NewDriver', 'None', %i, '','', '');", driverId, eventId];
+    BOOL success = [db executeUpdate:query];
+    if (!success) {
+        NSLog(@"error = %@", [db lastErrorMessage]);
+    }
     Driver *driver = [[Driver alloc] init];
     driver.driverid = driverId;
     driver.name = @"New Driver";
     driver.eventid = eventId;
+    [driver setTires:[NSMutableArray array]];
+    [driver setChassis:[NSMutableArray array]];
+    [driver setEngines:[NSMutableArray array]];
+    [db close];
     return driver;
 }
 
@@ -273,7 +282,10 @@ NSString * const databaseName = @"maindb.sqlite";
     NSString *query = [NSString stringWithFormat:@"SELECT %@ FROM driver WHERE eventid=%i", table, eventId];
     FMResultSet *results = [db executeQuery:query];
     while ([results next]) {
-        if ([[[results objectForColumnName:table] componentsSeparatedByString:@","] containsObject:someid])
+        NSString *str = [results objectForColumnName:table];
+        if ([str isEqualToString:@""] || str == nil)
+            return NO;
+        if ([[str componentsSeparatedByString:@","] containsObject:someid])
             return YES;
     }
     return NO;
@@ -364,7 +376,6 @@ NSString * const databaseName = @"maindb.sqlite";
 }
 
 - (void) storeDriversFromDatabaseWithJSON:(id)JSON andEventID:(int)eventID {
-    NSDate *start = [NSDate date];
     FMDatabase *db = [FMDatabase databaseWithPath:self.databasePath];
     if (![db open])
         return;
@@ -407,7 +418,6 @@ NSString * const databaseName = @"maindb.sqlite";
     }
     [db close];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
-    NSLog(@"%f", [start timeIntervalSinceNow]);
 }
 
 - (NSArray *)getClassesFromEventID:(int)eventId {
