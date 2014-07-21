@@ -65,10 +65,10 @@
         }];
     }
     else {
-//        [linea addDelegate:self];
-//        [linea connect];
-//        [linea barcodeSetScanMode:BARCODE_TYPE_DEFAULT error:nil];
-//        [linea barcodeStartScan:nil];
+        [linea addDelegate:self];
+        [linea connect];
+        [linea barcodeSetScanMode:BARCODE_TYPE_DEFAULT error:nil];
+        [linea barcodeStartScan:nil];
 
         [UIView animateWithDuration:1 animations:^{
             self.segmentScan.alpha = 1.0;
