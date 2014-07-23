@@ -196,7 +196,7 @@
                             return;
                         }
                     }
-                    if ([[DBHandler sharedManager] hasDuplicate:text  inEvent:driver.eventid andType:NWTableOrderTires]) {
+                    if ([[DBHandler sharedManager] hasDuplicate:text inEvent:driver.eventid andType:NWTableOrderTires]) {
                         [self showAlertWithTitle:@"Error" andMessage:@"Tire Number already in use."];
                         [self playSound];
                         return;

@@ -283,8 +283,6 @@ NSString * const databaseName = @"maindb.sqlite";
     FMResultSet *results = [db executeQuery:query];
     while ([results next]) {
         NSString *str = [results objectForColumnName:table];
-        if ([str isEqualToString:@""] || str == nil)
-            return NO;
         if ([[str componentsSeparatedByString:@","] containsObject:someid])
             return YES;
     }
