@@ -39,6 +39,8 @@
         [changesMade setObject:[NSNumber numberWithBool:NO] atIndexedSubscript:i];
     self.title = [driver name];
     if ([self isNewDriver]) {
+        self.nameField.text = @"";
+        self.nameField.placeholder = @"New Driver";
         [self setEditing:YES animated:YES];
     }
     else [self setUserInteractionEnabled:NO];
