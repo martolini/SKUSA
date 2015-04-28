@@ -358,6 +358,7 @@ NSString * const databaseName = @"maindb.sqlite";
         return;
     [db executeUpdate:@"DELETE FROM event"];
     for (id key in [JSON allKeys]) {
+        
         NSString *query = [NSString stringWithFormat:@"INSERT INTO event (eventid, name, location, organization, classes, start, end) VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@')",
                            [[JSON objectForKey:key] objectForKey:@"id"],
                            [[JSON objectForKey:key] objectForKey:@"name"],
@@ -391,28 +392,16 @@ NSString * const databaseName = @"maindb.sqlite";
         NSString *class = [[JSON objectForKey:key] objectForKey:@"class"];
         if ([class isEqualToString:@""])
             class = @"None";
-        NSString *query = [NSString stringWithFormat:@"INSERT OR REPLACE INTO driver (driverid, name, kart, note, class, tires, chassis, engines, eventid) values (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', %i)",
-                           key,
-                           [[JSON objectForKey:key] objectForKey:@"name"],
-                           [[JSON objectForKey:key] objectForKey:@"kart"],
-                           [[JSON objectForKey:key] objectForKey:@"note"],
-                           class,
-                           [[JSON objectForKey:key] objectForKey:@"tires"],
-                           [[JSON objectForKey:key] objectForKey:@"chassis"],
-                           [[JSON objectForKey:key] objectForKey:@"engines"],
-                           eventID];
-//        NSString *query = [NSString stringWithFormat:@"UPDATE driver SET name='%@', kart='%@', note='%@', class='%@', tires='%@', chassis='%@', engines='%@', eventid=%i WHERE driverid=%@",
-//                           [[JSON objectForKey:key] objectForKey:@"name"],
-//                           [[JSON objectForKey:key] objectForKey:@"kart"],
-//                           [[JSON objectForKey:key] objectForKey:@"note"],
-//                           class,
-//                           [[JSON objectForKey:key] objectForKey:@"tires"],
-//                           [[JSON objectForKey:key] objectForKey:@"chassis"],
-//                           [[JSON objectForKey:key] objectForKey:@"engines"],
-//                           eventID,
-//                           key
-//                           ];
-        [db executeUpdate:query];
+        NSString *query = [NSString stringWithFormat:@"INSERT OR REPLACE INTO driver (driverid, name, kart, note, class, tires, chassis, engines, eventid) values (?, ?, ?, ?, ?, ?, ?, ?, ?)"];
+        [db executeUpdate:query, key,
+         [[JSON objectForKey:key] objectForKey:@"name"],
+         [[JSON objectForKey:key] objectForKey:@"kart"],
+         [[JSON objectForKey:key] objectForKey:@"note"],
+         class,
+         [[JSON objectForKey:key] objectForKey:@"tires"],
+         [[JSON objectForKey:key] objectForKey:@"chassis"],
+         [[JSON objectForKey:key] objectForKey:@"engines"],
+         [NSNumber numberWithInt:eventID ]];
     }
     [db close];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDriverDidchange object:nil];
