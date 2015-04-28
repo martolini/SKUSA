@@ -588,6 +588,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Martin Skow Røed";
+				TargetAttributes = {
+					0B5BA47F16B6B74200047CFB = {
+						DevelopmentTeam = 3VWKDY84VJ;
+					};
+				};
 			};
 			buildConfigurationList = 0B5BA47A16B6B74200047CFB /* Build configuration list for PBXProject "NickWeil" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -775,6 +780,8 @@
 		0B5BA4A516B6B74200047CFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NickWeil/NickWeil-Prefix.pch";
 				INFOPLIST_FILE = "NickWeil/NickWeil-Info.plist";
@@ -785,6 +792,7 @@
 					/Users/martinroed/Documents/NickWeil/GIT/NickWeilEvents/Flurry,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -793,6 +801,8 @@
 		0B5BA4A616B6B74200047CFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NickWeil/NickWeil-Prefix.pch";
 				INFOPLIST_FILE = "NickWeil/NickWeil-Info.plist";
@@ -803,6 +813,7 @@
 					/Users/martinroed/Documents/NickWeil/GIT/NickWeilEvents/Flurry,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

@@ -136,7 +136,13 @@
 #pragma mark - UITextField
 
 - (BOOL) textFieldShouldEndEditing:(UITextField *)textField {
-    UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
+    UITableViewCell *cell;
+    if ([[[UIDevice currentDevice] systemVersion] hasPrefix:@"7."]) {
+        cell = (UITableViewCell *)[[[textField superview] superview] superview];
+    }
+    else {
+        cell = (UITableViewCell *)[[textField superview] superview];
+    };
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([cell.reuseIdentifier isEqualToString:@"SettingsCell"]) {
         [userDefaults setObject:textField.text forKey:@"kIPaddress"];
